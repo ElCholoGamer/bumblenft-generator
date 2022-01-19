@@ -1,7 +1,7 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import nc from 'next-connect';
-import { SizingType } from '../../lib/constants';
-import { generateBumbleNft } from '../../lib/generator';
+import { SizingType } from 'lib/constants';
+import { generateBumbleNft } from 'lib/generator';
 
 const handler = nc<NextApiRequest, NextApiResponse>();
 
