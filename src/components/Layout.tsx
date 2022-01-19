@@ -2,26 +2,39 @@ import Head from 'next/head';
 import { Header } from './Header';
 
 export interface Props {
-	title: string;
+	title?: string;
+	siteTitle?: string;
 	description?: string;
 }
 
-export const Layout: React.FC<Props> = ({ title, description = 'the', children }) => (
-	<>
-		<Head>
-			<title>{title}</title>
-			<meta name="description" content={description} />
+export const Layout: React.FC<Props> = ({
+	siteTitle = 'BumbleNFT\u00AE Generator',
+	title,
+	description = 'the',
+	children,
+}) => {
+	const fullTitle = title ? `${title} | ${siteTitle}` : siteTitle;
 
-			<meta property="og:title" content={title} />
-			<meta property="og:description" content={description} />
-			<meta property="og:type" content="website" />
-			<meta property="og:image" content={`${process.env.NEXT_PUBLIC_HOST}/api/generate?type=og`} />
-			<meta property="og:image:alt" content="A randomly generated Bumble NFT" />
+	return (
+		<>
+			<Head>
+				<title>{fullTitle}</title>
+				<meta name="description" content={description} />
 
-			<link rel="icon" href="/favicon.ico" />
-		</Head>
+				<meta property="og:title" content={fullTitle} />
+				<meta property="og:description" content={description} />
+				<meta property="og:type" content="website" />
+				<meta
+					property="og:image"
+					content={`${process.env.NEXT_PUBLIC_HOST}/api/generate?type=og`}
+				/>
+				<meta property="og:image:alt" content="A randomly generated Bumble NFT" />
 
-		<Header />
-		{children}
-	</>
-);
+				<link rel="icon" href="/favicon.ico" />
+			</Head>
+
+			<Header />
+			{children}
+		</>
+	);
+};
