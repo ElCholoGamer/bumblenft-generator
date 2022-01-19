@@ -1,9 +1,9 @@
 import path from 'node:path';
 import fs from 'node:fs/promises';
 import sharp from 'sharp';
-import { BASE_LAYER, LAYERS_FOLDER, layers } from './constants';
-import { LayerInfo } from './types';
+import { layers, BASE_LAYER, LAYERS_FOLDER, BG_RANGE } from './constants';
 import { randomRange } from './utils';
+import type { LayerInfo } from './types';
 
 async function getRandomLayer(layer: LayerInfo): Promise<string> {
 	const baseDir = path.join(LAYERS_FOLDER, layer.folder);
@@ -14,7 +14,7 @@ async function getRandomLayer(layer: LayerInfo): Promise<string> {
 }
 
 function getRandomBackground() {
-	const nums = [...Array(3)].map(() => Math.floor(randomRange(120, 200)));
+	const nums = [...Array(3)].map(() => Math.floor(randomRange(BG_RANGE.min, BG_RANGE.max)));
 
 	return `#${nums.map(n => n.toString(16).padStart(2, '0')).join('')}`;
 }

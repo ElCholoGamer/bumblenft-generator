@@ -1,4 +1,4 @@
-import { LayerInfo } from './types';
+import type { LayerInfo } from './types';
 
 export const layers: LayerInfo[] = [
 	{
@@ -25,3 +25,8 @@ export const layers: LayerInfo[] = [
 
 export const LAYERS_FOLDER = 'layers';
 export const BASE_LAYER = 'base.png';
+
+export const BG_RANGE = {
+	min: 140,
+	max: 200,
+};
