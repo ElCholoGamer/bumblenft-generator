@@ -1,9 +1,9 @@
 import path from 'node:path';
 import fs from 'node:fs/promises';
-import sharp from 'sharp';
-import { layers, BASE_LAYER, LAYERS_FOLDER, BG_RANGE } from './constants';
-import { randomRange } from './utils';
-import type { LayerInfo, SizingInfo } from './types';
+import sharp, { Color } from 'sharp';
+import { layers, BASE_LAYER, LAYERS_FOLDER, BG_COLOR_RANGE, TRANSPARENT } from './constants';
+import { randomColor } from './utils';
+import type { LayerInfo, Size } from './types';
 
 async function getRandomLayer(layer: LayerInfo): Promise<string> {
 	const baseDir = path.join(LAYERS_FOLDER, layer.folder);
@@ -13,13 +13,7 @@ async function getRandomLayer(layer: LayerInfo): Promise<string> {
 	return path.join(baseDir, randomLayer);
 }
 
-function getRandomBackground() {
-	const nums = [...Array(3)].map(() => Math.floor(randomRange(BG_RANGE.min, BG_RANGE.max)));
-
-	return `#${nums.map(n => n.toString(16).padStart(2, '0')).join('')}`;
-}
-
-export async function generateBumbleNft(sizing: SizingInfo): Promise<Buffer> {
+export async function generateBumbleNft(size: Size, withBackground = true): Promise<Buffer> {
 	const baseLayer = path.join(LAYERS_FOLDER, BASE_LAYER);
 	const layerInputs: string[] = [];
 
@@ -30,14 +24,28 @@ export async function generateBumbleNft(sizing: SizingInfo): Promise<Buffer> {
 		}
 	}
 
-	const background = getRandomBackground();
-
-	const image = await sharp(baseLayer)
+	let image = await sharp(baseLayer)
 		.composite(layerInputs.map(input => ({ input })))
-		.flatten({ background })
-		.toBuffer();
+		.toBuffer()
+		.then(composite =>
+			sharp(composite)
+				.resize({
+					...size,
+					fit: 'contain',
+					background: TRANSPARENT,
+				})
+				.toBuffer()
+		);
 
-	return sharp(image)
-		.resize({ ...sizing, fit: 'contain', background })
-		.toBuffer();
+	if (withBackground) {
+		const background = randomColor(BG_COLOR_RANGE.min, BG_COLOR_RANGE.max);
+		image = await sharp(image).flatten({ background }).toBuffer();
+	}
+
+	return image;
+}
+
+export async function generatePlaceholderNft(size: Size): Promise<Buffer> {
+	const image = await generateBumbleNft(size, false);
+	return sharp(image).ensureAlpha().extractChannel('alpha').negate().toBuffer();
 }

@@ -7,7 +7,7 @@ export interface LayerInfo {
 	chance: number;
 }
 
-export interface SizingInfo {
+export interface Size {
 	width: number;
 	height: number;
 }

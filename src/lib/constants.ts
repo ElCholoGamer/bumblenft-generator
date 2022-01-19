@@ -1,4 +1,5 @@
-import type { LayerInfo, SizingInfo } from './types';
+import { Color } from 'sharp';
+import type { LayerInfo } from './types';
 
 export const layers: LayerInfo[] = [
 	{
@@ -26,12 +27,18 @@ export const layers: LayerInfo[] = [
 export const LAYERS_FOLDER = 'layers';
 export const BASE_LAYER = 'base.png';
 
-export const BG_RANGE = {
+export const BG_COLOR_RANGE = {
 	min: 140,
 	max: 200,
 };
 
-export const SizingType: Record<string, SizingInfo> = {
+export enum ImageType {
+	NORMAL = 'normal',
+	OG = 'og',
+	PLACEHOLDER = 'placeholder',
+}
+
+export const ImageSizes = {
 	NORMAL: {
 		width: 450,
 		height: 380,
@@ -43,3 +50,5 @@ export const SizingType: Record<string, SizingInfo> = {
 };
 
 export const UPLOADS_FOLDER = 'bumble_nfts';
+
+export const TRANSPARENT: Color = { r: 255, g: 255, b: 255, alpha: 0 };
