@@ -1,7 +1,7 @@
 import path from 'node:path';
 import fs from 'node:fs/promises';
 import sharp from 'sharp';
-import { layers, BASE_LAYER, LAYERS_FOLDER, BG_RANGE } from './constants';
+import { layers, BASE_LAYER, LAYERS_FOLDER, BG_RANGE, OG_IMAGE_SIZE } from './constants';
 import { randomRange } from './utils';
 import type { LayerInfo } from './types';
 
@@ -19,7 +19,7 @@ function getRandomBackground() {
 	return `#${nums.map(n => n.toString(16).padStart(2, '0')).join('')}`;
 }
 
-export async function generateBumbleNft(): Promise<Buffer> {
+export async function generateBumbleNft(og = false): Promise<Buffer> {
 	const baseLayer = path.join(LAYERS_FOLDER, BASE_LAYER);
 
 	const inputLayers: string[] = [];
@@ -30,11 +30,19 @@ export async function generateBumbleNft(): Promise<Buffer> {
 			inputLayers.push(randomLayer);
 		}
 	}
-
 	const background = getRandomBackground();
 
-	return sharp(baseLayer)
+	const image = await sharp(baseLayer)
 		.composite(inputLayers.map(input => ({ input })))
 		.flatten({ background })
 		.toBuffer();
+
+	if (og) {
+		return sharp(image)
+			.resize({ ...OG_IMAGE_SIZE, fit: 'contain', background })
+			.flatten({ background })
+			.toBuffer();
+	}
+
+	return image;
 }
