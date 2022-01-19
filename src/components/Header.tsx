@@ -1,7 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import Navbar from 'react-bootstrap/NavBar';
-import Nav from 'react-bootstrap/Nav';
+import { Navbar, Nav } from 'react-bootstrap';
 import logo from '@public/logo.png';
 import githubIcon from '@public/github.svg';
 
