@@ -2,8 +2,8 @@ import Link from 'next/link';
 import Image from 'next/image';
 import Navbar from 'react-bootstrap/NavBar';
 import Nav from 'react-bootstrap/Nav';
-import logo from '@public/logo.png';
-import githubIcon from '@public/github.svg';
+import logo from '../../public/logo.png';
+import githubIcon from '../../public/github.svg';
 
 export const Header: React.FC = () => (
 	<Navbar bg="dark" variant="dark" className="px-2">
