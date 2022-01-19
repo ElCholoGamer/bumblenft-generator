@@ -27,7 +27,7 @@ export const Layout: React.FC<Props> = ({
 				<meta property="og:image" content={`${process.env.NEXT_PUBLIC_HOST}/api/og-image`} />
 				<meta property="og:image:alt" content="A randomly generated Bumble NFT" />
 
-				<link rel="icon" href="/favicon.ico" />
+				<link rel="icon" type="image/x-icon" href="/favicon.ico" />
 			</Head>
 
 			<Header />
