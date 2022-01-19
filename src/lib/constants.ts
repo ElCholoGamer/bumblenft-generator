@@ -41,3 +41,5 @@ export const SizingType: Record<string, SizingInfo> = {
 		height: 630,
 	},
 };
+
+export const UPLOADS_FOLDER = 'bumble_nfts';

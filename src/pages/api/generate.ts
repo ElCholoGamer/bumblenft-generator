@@ -2,14 +2,17 @@ import { NextApiRequest, NextApiResponse } from 'next';
 import nc from 'next-connect';
 import { SizingType } from '../../lib/constants';
 import { generateBumbleNft } from '../../lib/generator';
+import { toPartialUpload, upload } from '../../lib/uploads';
 
 const handler = nc<NextApiRequest, NextApiResponse>();
 
 handler.get(async (req, res) => {
-	const sizing = SizingType[req.query.type?.toString().toUpperCase()];
-	const randomNft = await generateBumbleNft(sizing || SizingType.NORMAL);
+	const sizing = SizingType[req.query.size?.toString().toUpperCase()] || SizingType.NORMAL;
+	const image = await generateBumbleNft(sizing);
 
-	res.setHeader('Content-Type', 'image/png').send(randomNft);
+	const resource = await upload(image);
+
+	res.json(toPartialUpload(resource));
 });
 
 export default handler;
