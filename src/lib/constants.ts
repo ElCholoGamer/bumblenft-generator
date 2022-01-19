@@ -1,4 +1,4 @@
-import type { LayerInfo } from './types';
+import type { LayerInfo, SizingInfo } from './types';
 
 export const layers: LayerInfo[] = [
 	{
@@ -31,7 +31,13 @@ export const BG_RANGE = {
 	max: 200,
 };
 
-export const OG_IMAGE_SIZE = {
-	width: 1200,
-	height: 630,
+export const SizingType: Record<string, SizingInfo> = {
+	NORMAL: {
+		width: 450,
+		height: 380,
+	},
+	OG: {
+		width: 1200,
+		height: 630,
+	},
 };
