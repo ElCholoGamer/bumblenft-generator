@@ -7,6 +7,7 @@ import { Layout } from 'components/Layout';
 import { Rarity } from 'components/Rarity';
 import { ImageSizes } from 'lib/common/constants';
 import placeholder from '@public/placeholder.png';
+import { StatusButton } from 'components/StatusButton';
 
 const Home: NextPage = () => {
 	const [data, setData] = useState({
@@ -49,13 +50,9 @@ const Home: NextPage = () => {
 					/>
 				</div>
 
-				<Button className="mt-4" disabled={loading} onClick={handleClick}>
-					{!loading ? (
-						'Do it'
-					) : (
-						<Spinner size="sm" role="status" aria-hidden="true" animation="border" />
-					)}
-				</Button>
+				<StatusButton className="mt-4" disabled={loading} onClick={handleClick}>
+					Do it
+				</StatusButton>
 			</main>
 		</Layout>
 	);
