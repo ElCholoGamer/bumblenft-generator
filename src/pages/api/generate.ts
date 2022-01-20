@@ -11,8 +11,8 @@ handler.get(async (req, res) => {
 
 	switch (type) {
 		case ImageType.OG:
-			const ogImage = await generateBumbleNft(ImageSizes.OG);
-			res.setHeader('Content-Type', 'image/png').send(ogImage);
+			const ogResult = await generateBumbleNft(ImageSizes.OG);
+			res.setHeader('Content-Type', 'image/png').send(ogResult.image);
 			break;
 		case ImageType.PLACEHOLDER:
 			const placeholderImage = await generatePlaceholderNft(ImageSizes.NORMAL);
@@ -20,10 +20,13 @@ handler.get(async (req, res) => {
 			break;
 		case ImageType.NORMAL:
 		default:
-			const image = await generateBumbleNft(ImageSizes.NORMAL);
-			const resource = await upload(image);
+			const result = await generateBumbleNft(ImageSizes.NORMAL);
+			const resource = await upload(result.image);
 
-			res.json(toPartialUpload(resource));
+			res.json({
+				rarity: result.rarity,
+				upload: toPartialUpload(resource),
+			});
 			break;
 	}
 });

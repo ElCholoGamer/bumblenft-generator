@@ -1,9 +1,18 @@
 import path from 'node:path';
 import fs from 'node:fs/promises';
 import sharp from 'sharp';
-import { layers, BASE_LAYER, LAYERS_FOLDER, BG_COLOR_RANGE, TRANSPARENT } from './constants';
-import { randomColor } from './utils';
-import type { LayerInfo, Size } from './types';
+import {
+	layers,
+	BASE_LAYER,
+	LAYERS_FOLDER,
+	BG_COLOR_RANGE,
+	TRANSPARENT,
+	MAX_RARITY,
+	MIN_RARITY,
+	RARITY_STEP,
+} from './constants';
+import { randomColor, randomRange } from './utils';
+import type { GeneratorResult, LayerInfo, Size } from './types';
 
 async function getRandomLayer(layer: LayerInfo): Promise<string> {
 	const baseDir = path.join(LAYERS_FOLDER, layer.folder);
@@ -13,7 +22,10 @@ async function getRandomLayer(layer: LayerInfo): Promise<string> {
 	return path.join(baseDir, randomLayer);
 }
 
-export async function generateBumbleNft(size: Size, withBackground = true): Promise<Buffer> {
+export async function generateBumbleNft(
+	size: Size,
+	withBackground = true
+): Promise<GeneratorResult> {
 	const baseLayer = path.join(LAYERS_FOLDER, BASE_LAYER);
 	const layerInputs: string[] = [];
 
@@ -42,10 +54,15 @@ export async function generateBumbleNft(size: Size, withBackground = true): Prom
 		image = await sharp(image).flatten({ background }).toBuffer();
 	}
 
-	return image;
+	const rarity = randomRange(MIN_RARITY / RARITY_STEP, MAX_RARITY / RARITY_STEP + 1);
+
+	return {
+		image,
+		rarity: Math.floor(rarity) * RARITY_STEP,
+	};
 }
 
 export async function generatePlaceholderNft(size: Size): Promise<Buffer> {
-	const image = await generateBumbleNft(size, false);
+	const { image } = await generateBumbleNft(size, false);
 	return sharp(image).ensureAlpha().extractChannel('alpha').negate().toBuffer();
 }

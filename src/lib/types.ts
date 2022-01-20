@@ -20,3 +20,8 @@ export interface PartialResource {
 	height: number;
 	createdAt: string;
 }
+
+export interface GeneratorResult {
+	image: Buffer;
+	rarity: number;
+}
