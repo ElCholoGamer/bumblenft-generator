@@ -1,5 +1,7 @@
 # BumbleNFT<sup>&reg;</sup> Generator
 
-the
+website goes hard, feel free to screenshot
 
-Credits to YuH#8819 on Discord for the art :ech:
+---
+
+Credits to YuH#8819 on Discord for the artwork :ech:
