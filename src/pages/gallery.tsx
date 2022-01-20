@@ -17,12 +17,14 @@ interface Props {
 
 export const getServerSideProps: GetServerSideProps<Props> = async () => {
 	const { resources, nextCursor } = await getAllUploads();
-	return {
-		props: {
-			initialImages: resources.map(toPartialUpload),
-			nextCursor,
-		},
+
+	const props: Props = {
+		initialImages: resources.map(toPartialUpload),
 	};
+
+	if (nextCursor) props.nextCursor = nextCursor;
+
+	return { props };
 };
 
 const Gallery: NextPage<Props> = ({ initialImages, nextCursor }) => {
