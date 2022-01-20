@@ -29,8 +29,8 @@ export const LAYERS_FOLDER = path.join(process.cwd(), 'layers');
 export const BASE_LAYER = 'base.png';
 
 export const BG_COLOR_RANGE = {
-	min: 140,
-	max: 200,
+	min: 80,
+	max: 180,
 };
 
 export const UPLOADS_FOLDER = 'bumble_nfts';
