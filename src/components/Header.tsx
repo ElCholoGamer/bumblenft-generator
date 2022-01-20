@@ -29,8 +29,11 @@ export const Header: React.FC = () => (
 				className="d-flex ms-auto text-secondary"
 				href="https://github.com/ElCholoGamer/bumblenft-generator"
 			>
+				<span className="me-2 d-md-none">
+					<Image src={githubIcon} alt="GitHub Logo" />
+				</span>
 				Check out on GitHub
-				<span className="mx-2">
+				<span className="mx-2 d-none d-md-inline">
 					<Image src={githubIcon} alt="GitHub Logo" />
 				</span>
 			</a>
