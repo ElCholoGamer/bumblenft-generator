@@ -33,23 +33,6 @@ export const BG_COLOR_RANGE = {
 	max: 200,
 };
 
-export enum ImageType {
-	NORMAL = 'normal',
-	OG = 'og',
-	PLACEHOLDER = 'placeholder',
-}
-
-export const ImageSizes = {
-	NORMAL: {
-		width: 450,
-		height: 380,
-	},
-	OG: {
-		width: 1200,
-		height: 630,
-	},
-};
-
 export const UPLOADS_FOLDER = 'bumble_nfts';
 
 export const TRANSPARENT: Color = { r: 255, g: 255, b: 255, alpha: 0 };

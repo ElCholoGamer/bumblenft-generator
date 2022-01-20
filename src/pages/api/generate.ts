@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import nc from 'next-connect';
-import { ImageSizes, ImageType } from 'lib/constants';
+import { ImageSizes, ImageType } from 'lib/common/constants';
 import { generateBumbleNft, generatePlaceholderNft } from 'lib/generator';
 import { toPartialUpload, upload } from 'lib/uploads';
 
