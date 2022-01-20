@@ -25,7 +25,7 @@ export const layers: LayerInfo[] = [
 	},
 ];
 
-export const LAYERS_FOLDER = path.join(
+export const LAYERS_FOLDER = path.resolve(
 	process.env.NODE_ENV === 'production' ? __dirname : '.',
 	'layers'
 );
