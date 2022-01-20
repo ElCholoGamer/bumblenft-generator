@@ -40,3 +40,5 @@ export const TRANSPARENT: Color = { r: 255, g: 255, b: 255, alpha: 0 };
 export const MIN_RARITY = 1;
 export const MAX_RARITY = 5;
 export const RARITY_STEP = 0.5;
+
+export const RESOURCE_FETCH_LIMIT = 30;

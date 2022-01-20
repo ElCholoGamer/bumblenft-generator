@@ -1,8 +1,8 @@
+import type { ImageResource, ResourceFetchResult } from './types';
 import { v2 as cloudinary, UploadApiOptions, AdminAndResourceOptions } from 'cloudinary';
 import { Readable } from 'node:stream';
 import { promisify } from 'node:util';
-import { UPLOADS_FOLDER } from './constants';
-import type { ImageResource, ResourceFetchResult } from './types';
+import { RESOURCE_FETCH_LIMIT, UPLOADS_FOLDER } from './constants';
 
 const getResource = promisify<string, AdminAndResourceOptions, ImageResource>(
 	cloudinary.api.resource
@@ -31,6 +31,7 @@ export async function getAllUploads(cursor?: string): Promise<ResourceFetchResul
 		type: 'upload',
 		prefix: `${UPLOADS_FOLDER}/`,
 		next_cursor: cursor,
+		max_results: RESOURCE_FETCH_LIMIT,
 	});
 
 	return {
