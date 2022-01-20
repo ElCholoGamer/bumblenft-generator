@@ -15,6 +15,5 @@ export const ImageList: React.FC<Props> = ({ images }) => (
 				</a>
 			</li>
 		))}
-		<li></li>
 	</ul>
 );
