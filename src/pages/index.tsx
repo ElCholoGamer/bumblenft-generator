@@ -1,14 +1,17 @@
 import type { NextPage } from 'next';
+import Image from 'next/image';
 import { MouseEventHandler, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Spinner from 'react-bootstrap/Spinner';
 import axios from 'axios';
 import { Layout } from 'components/Layout';
 import { Rarity } from 'components/Rarity';
+import { ImageSizes } from 'lib/common/constants';
+import placeholder from '@public/placeholder.png';
 
 const Home: NextPage = () => {
 	const [data, setData] = useState({
-		upload: { permalink: '/api/generate?type=placeholder' },
+		upload: { permalink: placeholder },
 		rarity: null,
 	});
 	const [rarity, setRarity] = useState<number | null>(null);
@@ -34,30 +37,24 @@ const Home: NextPage = () => {
 	return (
 		<Layout>
 			<main className="text-center p-2">
-				<Rarity rarityValue={rarity} />
+				<Rarity className="fs-4" rarityValue={rarity} />
 
-				{/*eslint-disable-next-line @next/next/no-img-element*/}
-				<img
-					className="my-1 rounded"
-					onLoad={handleLoad}
-					onError={handleLoad}
-					src={data.upload.permalink}
-					alt=""
-				/>
-				<br />
+				<div className="my-2 mw-100">
+					<Image
+						className="rounded bg-white"
+						onLoad={handleLoad}
+						onError={handleLoad}
+						src={data.upload.permalink}
+						{...ImageSizes.NORMAL}
+						alt="A randomly generated Bumble NFT"
+					/>
+				</div>
 
-				<Button className="mt-4" variant="primary" disabled={loading} onClick={handleClick}>
+				<Button className="mt-4" disabled={loading} onClick={handleClick}>
 					{!loading ? (
 						'Do it'
 					) : (
-						<Spinner
-							as="span"
-							variant="light"
-							size="sm"
-							role="status"
-							aria-hidden="true"
-							animation="border"
-						/>
+						<Spinner size="sm" role="status" aria-hidden="true" animation="border" />
 					)}
 				</Button>
 			</main>
