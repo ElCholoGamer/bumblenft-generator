@@ -1,7 +1,6 @@
 export enum ImageType {
 	NORMAL = 'normal',
 	OG = 'og',
-	PLACEHOLDER = 'placeholder',
 }
 
 export const ImageSizes = {

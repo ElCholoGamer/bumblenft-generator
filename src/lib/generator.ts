@@ -61,8 +61,3 @@ export async function generateBumbleNft(
 		rarity: Math.floor(rarity) * RARITY_STEP,
 	};
 }
-
-export async function generatePlaceholderNft(size: Size): Promise<Buffer> {
-	const { image } = await generateBumbleNft(size, false);
-	return sharp(image).ensureAlpha().extractChannel('alpha').negate().toBuffer();
-}
