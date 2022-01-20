@@ -27,12 +27,12 @@ export function upload(image: Buffer, options?: UploadApiOptions) {
 }
 
 export async function getAllUploads(cursor?: string): Promise<ResourceFetchResult> {
-	const result = await getResources({
-		type: 'upload',
-		prefix: `${UPLOADS_FOLDER}/`,
-		next_cursor: cursor,
-		max_results: RESOURCE_FETCH_LIMIT,
-	});
+	const result = await cloudinary.search
+		.expression(`resource_type:image && public_id:${UPLOADS_FOLDER}*`)
+		.next_cursor(cursor)
+		.max_results(RESOURCE_FETCH_LIMIT)
+		.sort_by('created_at', 'desc')
+		.execute();
 
 	return {
 		resources: result.resources,
