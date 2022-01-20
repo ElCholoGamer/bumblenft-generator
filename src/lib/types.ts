@@ -25,3 +25,8 @@ export interface GeneratorResult {
 	image: Buffer;
 	rarity: number;
 }
+
+export interface ResourceFetchResult {
+	resources: ImageResource[];
+	nextCursor?: string;
+}
