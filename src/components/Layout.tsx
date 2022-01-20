@@ -1,4 +1,6 @@
 import Head from 'next/head';
+import { Children, cloneElement, isValidElement } from 'react';
+import { Footer } from './Footer';
 import { Header } from './Header';
 
 export interface Props {
@@ -14,6 +16,12 @@ export const Layout: React.FC<Props> = ({
 	children,
 }) => {
 	const fullTitle = title ? `${title} | ${siteTitle}` : siteTitle;
+	const content = Children.map(children, child => {
+		if (!isValidElement(child)) return child;
+
+		const { className = '' } = child.props;
+		return cloneElement(child, { className: (className + ' flex-grow-1').trim() });
+	});
 
 	return (
 		<>
@@ -33,8 +41,11 @@ export const Layout: React.FC<Props> = ({
 				<link rel="icon" type="image/x-icon" href="/favicon.ico" />
 			</Head>
 
-			<Header />
-			{children}
+			<div className="d-flex flex-column h-100">
+				<Header />
+				{content}
+				<Footer />
+			</div>
 		</>
 	);
 };
