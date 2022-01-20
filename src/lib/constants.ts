@@ -5,7 +5,7 @@ import type { LayerInfo } from './types';
 export const layers: LayerInfo[] = [
 	{
 		folder: 'back_items',
-		chance: 0.2,
+		chance: 0.1,
 	},
 	{
 		folder: 'vests',
@@ -13,15 +13,15 @@ export const layers: LayerInfo[] = [
 	},
 	{
 		folder: 'held_items',
-		chance: 0.4,
+		chance: 0.3,
 	},
 	{
 		folder: 'hats',
-		chance: 0.9,
+		chance: 0.85,
 	},
 	{
 		folder: 'front_items',
-		chance: 0.3,
+		chance: 0.15,
 	},
 ];
 
