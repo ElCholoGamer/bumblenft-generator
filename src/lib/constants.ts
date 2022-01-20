@@ -25,10 +25,7 @@ export const layers: LayerInfo[] = [
 	},
 ];
 
-export const LAYERS_FOLDER = path.resolve(
-	process.env.NODE_ENV === 'production' ? __dirname : '.',
-	'layers'
-);
+export const LAYERS_FOLDER = path.join(process.cwd(), 'layers');
 export const BASE_LAYER = 'base.png';
 
 export const BG_COLOR_RANGE = {
