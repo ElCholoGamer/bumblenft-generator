@@ -1,5 +1,5 @@
 import { PartialResource } from 'lib/types';
-import styles from 'styles/Gallery.module.css';
+import styles from 'styles/ImageList.module.css';
 
 export interface Props {
 	images: PartialResource[];
