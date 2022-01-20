@@ -4,7 +4,7 @@
 }
 
 .container > li {
-	height: 30vh;
+	height: 180px;
 	flex-grow: 1;
 	transition: transform 100ms ease-out;
 }
