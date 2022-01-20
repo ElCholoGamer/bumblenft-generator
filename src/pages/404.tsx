@@ -1,7 +1,7 @@
 import type { NextPage } from 'next';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import Button from 'react-bootstrap/Button';
+import { Button } from 'react-bootstrap';
 import { Layout } from 'components/Layout';
 
 const NotFound: NextPage = () => {

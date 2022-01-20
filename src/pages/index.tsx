@@ -1,8 +1,7 @@
 import type { NextPage } from 'next';
 import Image from 'next/image';
 import { MouseEventHandler, useState } from 'react';
-import Button from 'react-bootstrap/Button';
-import Spinner from 'react-bootstrap/Spinner';
+import { Button, Spinner } from 'react-bootstrap';
 import axios from 'axios';
 import { Layout } from 'components/Layout';
 import { Rarity } from 'components/Rarity';
