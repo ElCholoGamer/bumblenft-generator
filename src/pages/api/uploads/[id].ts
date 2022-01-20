@@ -1,6 +1,7 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import nc from 'next-connect';
-import { getUpload, toPartialUpload } from 'lib/uploads';
+import { getUpload } from 'lib/uploads';
+import { toPartialUpload } from 'lib/common/uploads';
 
 const handler = nc<NextApiRequest, NextApiResponse>();
 
