@@ -11,7 +11,7 @@ export const ImageList: React.FC<Props> = ({ images }) => (
 			<li key={image.id} className="m-2">
 				<a href={image.permalink}>
 					{/*eslint-disable-next-line @next/next/no-img-element*/}
-					<img className={styles.galleryImage} src={image.permalink} alt="" />
+					<img className={`${styles.galleryImage} rounded`} src={image.permalink} alt="" />
 				</a>
 			</li>
 		))}
