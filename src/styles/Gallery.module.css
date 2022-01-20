@@ -1,0 +1,32 @@
+.container {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.container > li {
+	height: 30vh;
+	flex-grow: 1;
+	transition: transform 100ms ease-out;
+}
+
+.container > li:hover {
+	transform: scale(106%);
+}
+
+.container > li img {
+	border-radius: 10px;
+	max-height: 100%;
+	object-fit: cover;
+	vertical-align: middle;
+	min-width: 100%;
+}
+
+.container > li:last-child {
+	flex-grow: 10;
+}
+
+@media (prefers-reduced-motion) {
+	.container > li {
+		transition: none !important;
+	}
+}

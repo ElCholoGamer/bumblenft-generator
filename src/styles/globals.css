@@ -8,3 +8,7 @@ body {
 	background-color: var(--bs-dark);
 	color: var(--bs-light);
 }
+
+a {
+	text-decoration: none;
+}
