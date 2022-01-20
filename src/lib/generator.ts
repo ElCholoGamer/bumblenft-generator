@@ -14,7 +14,7 @@ async function getRandomLayer(layer: LayerInfo): Promise<string> {
 }
 
 export async function generateBumbleNft(size: Size, withBackground = true): Promise<Buffer> {
-	const baseLayer = path.join(LAYERS_FOLDER, BASE_LAYER);
+	const baseLayer = path.join(process.cwd(), LAYERS_FOLDER, BASE_LAYER);
 	const layerInputs: string[] = [];
 
 	for (const layerInfo of layers) {
