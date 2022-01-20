@@ -1,12 +1,12 @@
 import path from 'node:path';
 import fs from 'node:fs/promises';
-import sharp, { Color } from 'sharp';
+import sharp from 'sharp';
 import { layers, BASE_LAYER, LAYERS_FOLDER, BG_COLOR_RANGE, TRANSPARENT } from './constants';
 import { randomColor } from './utils';
 import type { LayerInfo, Size } from './types';
 
 async function getRandomLayer(layer: LayerInfo): Promise<string> {
-	const baseDir = path.join(LAYERS_FOLDER, layer.folder);
+	const baseDir = path.resolve(LAYERS_FOLDER, layer.folder);
 	const layers = await fs.readdir(baseDir);
 	const randomLayer = layers[Math.floor(Math.random() * layers.length)];
 
