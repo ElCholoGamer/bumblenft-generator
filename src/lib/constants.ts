@@ -13,7 +13,7 @@ export const layers: LayerInfo[] = [
 	},
 	{
 		folder: 'held_items',
-		chance: 0.3,
+		chance: 0.5,
 	},
 	{
 		folder: 'hats',
