@@ -25,7 +25,7 @@ export const layers: LayerInfo[] = [
 	},
 ];
 
-export const LAYERS_FOLDER = path.resolve('layers');
+export const LAYERS_FOLDER = path.resolve('./public/layers');
 export const BASE_LAYER = 'base.png';
 
 export const BG_COLOR_RANGE = {
