@@ -1,6 +1,6 @@
 {
 	"functions": {
-		"api/generate": {
+		"src/pages/api/generate.ts": {
 			"includeFiles": "layers/**"
 		}
 	}
