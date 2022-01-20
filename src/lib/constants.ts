@@ -1,3 +1,4 @@
+import path from 'node:path';
 import { Color } from 'sharp';
 import type { LayerInfo } from './types';
 
@@ -24,7 +25,7 @@ export const layers: LayerInfo[] = [
 	},
 ];
 
-export const LAYERS_FOLDER = 'layers';
+export const LAYERS_FOLDER = path.resolve('layers');
 export const BASE_LAYER = 'base.png';
 
 export const BG_COLOR_RANGE = {

@@ -6,7 +6,7 @@ import { randomColor } from './utils';
 import type { LayerInfo, Size } from './types';
 
 async function getRandomLayer(layer: LayerInfo): Promise<string> {
-	const baseDir = path.resolve(LAYERS_FOLDER, layer.folder);
+	const baseDir = path.join(LAYERS_FOLDER, layer.folder);
 	const layers = await fs.readdir(baseDir);
 	const randomLayer = layers[Math.floor(Math.random() * layers.length)];
 
@@ -14,7 +14,7 @@ async function getRandomLayer(layer: LayerInfo): Promise<string> {
 }
 
 export async function generateBumbleNft(size: Size, withBackground = true): Promise<Buffer> {
-	const baseLayer = path.join(process.cwd(), LAYERS_FOLDER, BASE_LAYER);
+	const baseLayer = path.join(LAYERS_FOLDER, BASE_LAYER);
 	const layerInputs: string[] = [];
 
 	for (const layerInfo of layers) {
